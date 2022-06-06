@@ -1,12 +1,13 @@
 
 import './App.css';
+import Register from './Register';
 
 function App() {
   return (
-    <div className="App">
-      authorization
+    <main className="App">
+      <Register/>
 
-    </div>
+    </main>
   );
 }
 
