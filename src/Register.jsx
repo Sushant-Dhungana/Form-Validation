@@ -5,9 +5,18 @@ function Register() {
       <main>
     <div>Register</div>
     <form>
-        <input type="username" placeholder="Username" />
-        <input type="password" placeholder="Password" />
-        <input type="password" placeholder="Confirm Password" />
+    <label htmlFor="username">
+    Username:
+        <input type="text" id="Username" />
+        </label>
+        <label htmlFor="password">
+            Password:
+        <input type="password" id="Password" />
+        </label>
+        <label htmlFor="Confirm_pwd">
+            Confirm Password:
+        <input type="password" id="Confirm_Pwd" />
+        </label>
         <button>Sign Up</button>
     </form>
     <p>Already Registered</p>
