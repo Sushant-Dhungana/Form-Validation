@@ -3,7 +3,7 @@ import {
   faCheck,
   faTimes,
   faInfoCircle,
-  faCommentsDollar,
+  // faCommentsDollar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -54,7 +54,29 @@ function Register() {
     setErrMsg("");
   }, [user, pwd, matchPwd]);
 
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+
+    const v1 = USER_REGEX.test(user);
+    const v2 = PWD_REGEX.test(pwd);
+    if (!v1 || !v2) {
+      setErrMsg("Invalid Entry");
+      return;
+    }
+    console.log(user, pwd);
+    setSuccess(true);
+  }
+
   return (
+    <>
+    {success ? (
+      <section>
+        <h1>success</h1>
+        <p>
+          <a href="#">Login</a>
+        </p>
+      </section>
+    ) : (
     <section>
       <p
         ref={errRef}
@@ -64,10 +86,9 @@ function Register() {
         {errMsg}
       </p>
       <h1>Register</h1>
-      <form>
+      <form onSubmit={handleSubmit }>
         <label htmlFor="username">
           Username:
-          <br />
           <span className={validName ? "valid" : "hide"}>
             <FontAwesomeIcon icon={faCheck} />
           </span>
@@ -160,13 +181,19 @@ function Register() {
           <FontAwesomeIcon icon={faInfoCircle} />
           Must match first password entered above
         </p>
-
-        <button>Sign Up</button>
+          {/* button disabled until validname, validpwd and validmatch else true i.e able */}
+        <button disabled={!validName || !validPwd || !validMatch ? true : false }>Sign Up</button>
       </form>
       <p>Already Registered</p>
-      <a href="/login">Sign In</a>
+      <span className="line">
+      <a href="/#">Log In</a>
+      </span>
+      
     </section>
+    )}
+    </>
   );
 }
 
 export default Register;
+ 

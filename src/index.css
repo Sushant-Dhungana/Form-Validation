@@ -1,21 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Joan&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    border-radius: 20px;
 }
 
 html {
     font-family: 'Nunito', sans-serif;
     font-size: 22px;
-    color: #fff;
+    color: rgb(35, 33, 33);
 }
 
 body {
     min-height: 100vh;
-    background-color: dodgerblue;
+    background-color: rgb(185, 210, 235);
+   
 }
 
 .App {
