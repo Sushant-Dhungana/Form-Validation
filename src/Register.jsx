@@ -30,29 +30,29 @@ function Register() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    const divElement = userRef.current
+    const divElement = userRef.current;
     divElement.focus();
-  }, [])
+  }, []);
 
   useEffect(() => {
     const result = USER_REGEX.test(user);
     console.log(result);
     console.log(user);
     setValidName(result);
-  }, [user])
+  }, [user]);
 
   useEffect(() => {
     const result = PWD_REGEX.test(pwd);
     console.log(result);
     console.log(pwd);
-    setValidName(result);
+    setValidPwd(result);
     const match = pwd === matchPwd;
     setValidMatch(match);
-  }, [pwd, matchPwd])
+  }, [pwd, matchPwd]);
 
   useEffect(() => {
     setErrMsg("");
-  }, [user, pwd, matchPwd])
+  }, [user, pwd, matchPwd]);
 
   return (
     <section>
@@ -66,13 +66,15 @@ function Register() {
       <h1>Register</h1>
       <form>
         <label htmlFor="username">
-          Username:<br/>
+          Username:
+          <br />
           <span className={validName ? "valid" : "hide"}>
-          <FontAwesomeIcon icon={faCheck}/>
+            <FontAwesomeIcon icon={faCheck} />
           </span>
           <span className={validName || !user ? "hide" : "invalid"}>
-          <FontAwesomeIcon icon={faTimes}/>
+            <FontAwesomeIcon icon={faTimes} />
           </span>
+          </label>
           <input
             type="text"
             id="Username"
@@ -85,19 +87,58 @@ function Register() {
             onFocus={() => setUserFocus(true)}
             onBlur={() => setUserFocus(false)}
           />
-          <p id="uidnote" className={userFocus && user && !validName ? "instructions" : "offscreen"}>
+          <p
+            id="uidnote"
+            className={
+              userFocus && user && !validName ? "instructions" : "offscreen"
+            }
+          >
             <FontAwesomeIcon icon={faInfoCircle} />
-            4 to 24 characters. <br/>
-            Must start with a letter. <br/>
-            Can contain letters, numbers, underscores and dashes. <br/>
-            </p>
-        </label>
+            4 to 24 characters. <br />
+            Must start with a letter. <br />
+            Can contain letters, numbers, underscores and dashes. <br />
+          </p>
+
         <label htmlFor="password">
-          Password: <br/>
-          <input type="password" id="Password" />
-        </label>
+          Password:
+          <span className={validPwd ? "valid" : "hide"}>
+            <FontAwesomeIcon icon={faCheck} />
+          </span>
+          <span className={validPwd || !pwd ? "hide" : "invalid"}>
+            <FontAwesomeIcon icon={faTimes} />
+          </span>
+          </label>
+          
+          <input
+            type="password"
+            id="password"
+            onChange={(e) => setPwd(e.target.value)}
+            required
+            aria-invalid={validPwd ? "false" : "true"}
+            aria-describedby="pwdnote"
+            onFocus={() => setPwdFocus(true)}
+            onBlur={() => setPwdFocus(false)}
+          />
+          <p
+            id="pwdnote"
+            className={
+              pwdFocus && !validPwd ? "instructions" : "offscreen"
+            }
+          >
+            <FontAwesomeIcon icon={faInfoCircle} />
+            8 to 24 characters. <br />
+            Must include uppercase and lowercase letters, a number and special
+            character <br />
+            Allowed special character:
+            <span aira-label="exclamation mark">!</span>{" "}
+            <span aira-label="at symbol">@</span>{" "}
+            <span aria-label="hastag">#</span>
+            <span aria-label="dollor sign">$</span>
+            <span aria-label="percent">%</span>
+          </p>
+        
         <label htmlFor="Confirm_pwd">
-          Confirm Password: <br/>
+          Confirm Password: <br />
           <input type="password" id="Confirm_Pwd" />
         </label>
         <button>Sign Up</button>
