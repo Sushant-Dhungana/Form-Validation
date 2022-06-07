@@ -74,30 +74,30 @@ function Register() {
           <span className={validName || !user ? "hide" : "invalid"}>
             <FontAwesomeIcon icon={faTimes} />
           </span>
-          </label>
-          <input
-            type="text"
-            id="Username"
-            ref={userRef}
-            autoComplete="off"
-            onChange={(e) => setUser(e.target.value)}
-            required
-            aria-invalid={validName ? "false" : "true"}
-            aria-describedby="uidnote"
-            onFocus={() => setUserFocus(true)}
-            onBlur={() => setUserFocus(false)}
-          />
-          <p
-            id="uidnote"
-            className={
-              userFocus && user && !validName ? "instructions" : "offscreen"
-            }
-          >
-            <FontAwesomeIcon icon={faInfoCircle} />
-            4 to 24 characters. <br />
-            Must start with a letter. <br />
-            Can contain letters, numbers, underscores and dashes. <br />
-          </p>
+        </label>
+        <input
+          type="text"
+          id="Username"
+          ref={userRef}
+          autoComplete="off"
+          onChange={(e) => setUser(e.target.value)}
+          required
+          aria-invalid={validName ? "false" : "true"}
+          aria-describedby="uidnote"
+          onFocus={() => setUserFocus(true)}
+          onBlur={() => setUserFocus(false)}
+        />
+        <p
+          id="uidnote"
+          className={
+            userFocus && user && !validName ? "instructions" : "offscreen"
+          }
+        >
+          <FontAwesomeIcon icon={faInfoCircle} />
+          4 to 24 characters. <br />
+          Must start with a letter. <br />
+          Can contain letters, numbers, underscores and dashes. <br />
+        </p>
 
         <label htmlFor="password">
           Password:
@@ -107,40 +107,60 @@ function Register() {
           <span className={validPwd || !pwd ? "hide" : "invalid"}>
             <FontAwesomeIcon icon={faTimes} />
           </span>
-          </label>
-          
-          <input
-            type="password"
-            id="password"
-            onChange={(e) => setPwd(e.target.value)}
-            required
-            aria-invalid={validPwd ? "false" : "true"}
-            aria-describedby="pwdnote"
-            onFocus={() => setPwdFocus(true)}
-            onBlur={() => setPwdFocus(false)}
-          />
-          <p
-            id="pwdnote"
-            className={
-              pwdFocus && !validPwd ? "instructions" : "offscreen"
-            }
-          >
-            <FontAwesomeIcon icon={faInfoCircle} />
-            8 to 24 characters. <br />
-            Must include uppercase and lowercase letters, a number and special
-            character <br />
-            Allowed special character:
-            <span aira-label="exclamation mark">!</span>{" "}
-            <span aira-label="at symbol">@</span>{" "}
-            <span aria-label="hastag">#</span>
-            <span aria-label="dollor sign">$</span>
-            <span aria-label="percent">%</span>
-          </p>
-        
-        <label htmlFor="Confirm_pwd">
-          Confirm Password: <br />
-          <input type="password" id="Confirm_Pwd" />
         </label>
+
+        <input
+          type="password"
+          id="password"
+          onChange={(e) => setPwd(e.target.value)}
+          required
+          aria-invalid={validPwd ? "false" : "true"}
+          aria-describedby="pwdnote"
+          onFocus={() => setPwdFocus(true)}
+          onBlur={() => setPwdFocus(false)}
+        />
+        <p
+          id="pwdnote"
+          className={pwdFocus && !validPwd ? "instructions" : "offscreen"}
+        >
+          <FontAwesomeIcon icon={faInfoCircle} />
+          8 to 24 characters. <br />
+          Must include uppercase and lowercase letters, a number and special
+          character <br />
+          Allowed special character:
+          <span aira-label="exclamation mark">!</span>{" "}
+          <span aira-label="at symbol">@</span>{" "}
+          <span aria-label="hastag">#</span>
+          <span aria-label="dollor sign">$</span>
+          <span aria-label="percent">%</span>
+        </p>
+
+        <label htmlFor="confirm_pwd">
+          Confirm Password:
+          <span className={validMatch && matchPwd ? "valid" : "hide"}>
+            <FontAwesomeIcon icon={faCheck} />
+          </span>
+          <span className={validMatch || !matchPwd ? "hide" : "invalid"}>
+            <FontAwesomeIcon icon={faTimes} />
+          </span>
+        </label>
+        <input
+          type="password"
+          id="confirm_Pwd"
+          onChange={(e) => setMatchPwd(e.target.value)}
+          required
+          aria-invalid={validMatch ? "false" : "true"}
+          aria-describedby="confirmnote"
+          onFocus={() => setMatchFocus(true)}
+          onBlur={() => setMatchFocus(false)}
+        />
+         <p
+          id="confirmnote"
+          className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
+          <FontAwesomeIcon icon={faInfoCircle} />
+          Must match first password entered above
+        </p>
+
         <button>Sign Up</button>
       </form>
       <p>Already Registered</p>
